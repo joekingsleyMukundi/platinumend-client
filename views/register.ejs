@@ -134,7 +134,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <p class="card-text mb-2">Make your management easy and fun!</p>
                 <form class="auth-register-form mt-2"
                   action="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/html/ltr/vertical-menu-template/index.html"
-                  method="POST">
+                  method="POST" id="register">
                   <div class="mb-1">
                     <label class="form-label" for="register-username">Username</label>
                     <input class="form-control" id="username" type="text" name="register-username" placeholder="johndoe"
@@ -173,7 +173,7 @@ License: You must have a valid license purchased only from themeforest(the above
                           policy & terms</a></label>
                     </div>
                   </div>
-                  <button class="btn btn-primary w-100" tabindex="5">Sign up</button>
+                  <button id="submit_register" class="btn btn-primary w-100" tabindex="5">Sign up</button>
                 </form>
                 <p class="text-center mt-2"><span>Already have an account?</span><a href="/"><span>&nbsp;Sign in
                       instead</span></a></p>
@@ -214,6 +214,40 @@ License: You must have a valid license purchased only from themeforest(the above
       if (feather) {
         feather.replace({ width: 14, height: 14 });
       }
+    })
+  </script>
+  <script>
+    const loginForm = document.getElementById('login').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = event.target.querySelector('#submit_register');
+      btn.disabled = true;
+      btn.textContent = 'registering new user .....';
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const re_password = document.getElementById('re_password').value;
+      const phone = document.getElementById('phone').value;
+      const username = document.getElementById('username').value;
+      const data = {
+        email: email,
+        username: username,
+        phone: phone,
+        password: password,
+        re_password: re_password,
+      }
+      axios.post('/register', data)
+        .then(res => {
+          console.log(res.status);
+          btn.disabled = false;
+          btn.textContent = 'Sign up';
+          if (res.data.message == 'Successfully registered') {
+            window.location.href = '/activate';
+          } else {
+            alert(res.data.message);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
     })
   </script>
 </body>
