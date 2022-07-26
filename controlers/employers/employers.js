@@ -2,17 +2,17 @@ exports.getDashboard = (req,res,next) => {
     res.render('employer-dashboard',)
 }
 exports.getInvoices = (req,res,next) => {
-    res.render('employer-invoices',)
+    res.render('invoices',)
 }
 exports.getInvoice = (req,res,next) => {
-    res.render('employer-invoice',)
+    res.render('invoice',)
 }
 exports.getWorkers = (req,res,next) => {
-    res.render('employer-workers',)
+    res.render('workers',)
 }
 exports.getJobs = (req,res,next) => {
-    res.render('employer-jobs',)
+    res.render('jobs',)
 }
-exports.getWallet = (req,res,next) => {
-    res.render('employer-wallet',)
+exports.getProfile = (req,res,next) => {
+    res.render('profile')
 }

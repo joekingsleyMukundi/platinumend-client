@@ -1,12 +1,15 @@
 exports.getDashboard = (req,res,next) => {
-    res.render('worker-dashboard',)
+    res.render('writer-dashboard',)
 }
 exports.getInvoices = (req,res,next) => {
-    res.render('worker-invoice',)
+    res.render('invoices',)
+}
+exports.getInvoice = (req,res,next)=>{
+    res.render('invoice')
 }
 exports.getJobs = (req,res,next) => {
-    res.render('worker-jobs',)
+    res.render('jobs',)
 }
-exports.getWallet = (req,res,next) => {
-    res.render('worker-wallet',)
+exports.getProfile = (req,res,next) => {
+    res.render('profile',)
 }
