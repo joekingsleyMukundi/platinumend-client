@@ -20,7 +20,7 @@ exports.getLogin = (req,resp,next)=>{
         })
         return
     }
-    resp.render('login',)
+    resp.render('login',{errormssg: req.flash('error')})
 }
 
 exports.getRegister = (req,resp,next)=>{

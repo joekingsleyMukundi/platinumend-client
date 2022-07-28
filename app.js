@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
+const flash = require('express-flash')
 const app = express();
 const auth = require('./routes/auth/urls')
 const general = require('./routes/general/urls')
@@ -14,12 +15,13 @@ app.use(cookieSession({
     signed: false,
     maxAge: 24 * 60 * 60 * 1000,
 }))
+app.use(flash())
 app.use(auth);
 app.use(general);
-app.use(workers);
+app.use('/workers',workers);
 app.use(employer);
 
-const PORT = 4000;
+const PORT = process.env.PORT || 3090;
 app.listen(PORT,()=>{
     console.log(`client live at port ${PORT}`);
 })
