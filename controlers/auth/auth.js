@@ -49,6 +49,26 @@ exports.getRegister = (req,resp,next)=>{
     resp.render('register',)
 }
 exports.getForgotPassword = (req,res,next)=>{
+    if (req.method == 'POST'){
+        const {email} = req.body
+        const data = {
+            email: email
+        }
+        axios.post('http://127.0.0.1:8000/api/v1/auth/password_reset_request/', data)
+        .then(function (response) {
+            console.log(response);
+            return res.status(200).json({
+                data: response.data,
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+            return res.send(500).json({
+                error: error,
+            })
+        });
+        return
+    }
     res.render('forgot-password',)
 }
 exports.getSetForgotPassword = (req,res,next)=>{
@@ -59,4 +79,8 @@ exports.getActivateAccount = (req,res,next)=>{
 }
 exports.getBecomeEmployer = (req,res,next)=>{
     res.render('become-employer',)
+}
+exports.logut = (req,res,next)=>{
+    req.session = null;
+    res.redirect('/');
 }

@@ -6,5 +6,5 @@ exports.getBlogs = (req,res,next) => {
 }
 
 exports.publishBlog = (req, res, next)=>{
-    res.render('blog')
+    res.render('Blog')
 }

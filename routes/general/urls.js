@@ -3,9 +3,9 @@ const { getChat, getBlogs, publishBlog } = require('../../controlers/general/con
 const { is_authenticated } = require('../../middlwares/authentication');
 const router = express.Router()
 
-router.get('/chat', is_authenticated,getChat);
-router.get('/blog', is_authenticated,getBlogs);
-router.get('/publish', is_authenticated,publishBlog)
+router.get('/chat', getChat);
+router.get('/blog', getBlogs);
+router.get('/publish',publishBlog)
 
 
 module.exports = router
